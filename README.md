@@ -6,10 +6,10 @@ This thesis presents the design and implementation of a System-on-Chip (SoC) tha
 The goal is to develop a fully RISC-V-controlled system capable of real-time video compression, demonstrating the feasibility of applying open-source RISC-V architecture in embedded applications with high data processing demands.
 
 ## System Overview
-
+![SoC Overview ](images/system_arch.png)
 ### RISC-V RV32I CPU (5-stage pipeline)
 - Supports all 37 base instructions
-- AXI-Lite interface for memory-mapped peripheral access
+- AXI-Lite interface for memory-mapped peripheral access (verified AXI-Lite protocol using AXI VIP)
 - Operates stably at 100 MHz
 - Implemented on Xilinx Virtex-7 VC707
 
@@ -30,14 +30,15 @@ The goal is to develop a fully RISC-V-controlled system capable of real-time vid
 - Configured in direct register mode
 - MM2S and S2MM control/status/length registers setup for data flow
 
-![System Block Diagram](images/system_arch.png)
-
 ## Project Structure
-- `/rtl/` – RISC-V CPU, H.264 encoder IP, and SoC modules  
-- `/sim/` – Testbenches and simulation files  
+- `/rtl/`     – RISC-V CPU, H.264 encoder IP, and SoC modules
+- `/matlab/`  - description of the operating pricible of H.264 video codec (encode + decode)
+- `/sim/`     – Testbenches and simulation files  
 - `/scripts/` – Python scripts for `.yuv` extraction and Ethernet data transfer  
-- `/media/` – Images and diagrams for documentation  
+- `/media/`   – Images and diagrams for documentation  
 
+## Implement SoC on FPGA Virtex-7 (on-going)
+![SoC implement on Virtex7 FPGA Block Diagram](images/system_arch.png)
 ## Authors & Supervisor
 - **Authors**: Đào Phước Tài, Nguyễn Anh Khôi  
 - **Supervisor**: Mr. Ngô Hiếu Trường – Faculty of Computer Engineering, UIT – VNU-HCM  
