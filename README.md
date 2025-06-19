@@ -38,12 +38,12 @@ The goal is to develop a fully RISC-V-controlled system capable of real-time vid
 ### 1. RV32I CPU
 #### 1.1. 37 instruction test (implemented on Virtex-7 FPGA)
 The instruction testing process covers all 37 base instruction defined in the RV32I specification:
-o	R-type: add, sub, xor, or, and, sll, srl, sra, slt, sltu
-o	I-type (imm): addi, xori, ori, andi, slli, srli, srai, slti, sltiu
-o	I-type (load): lb, lh, lw, lbu, lhu
-o	S-type:  sb, sh, sw
-o	B-type: beq, bne, blt, bge, bltu, bgeu
-o	Các lệnh khác: jal, jalr, lui, auipc
+- R-type: add, sub, xor, or, and, sll, srl, sra, slt, sltu
+- I-type (imm): addi, xori, ori, andi, slli, srli, srai, slti, sltiu
+- I-type (load): lb, lh, lw, lbu, lhu
+- S-type:  sb, sh, sw
+- B-type: beq, bne, blt, bge, bltu, bgeu
+- Các lệnh khác: jal, jalr, lui, auipc
 
 #### 1.2. Peripheral access via MMIO Interface (used AXI-Lite Protocol)
 
