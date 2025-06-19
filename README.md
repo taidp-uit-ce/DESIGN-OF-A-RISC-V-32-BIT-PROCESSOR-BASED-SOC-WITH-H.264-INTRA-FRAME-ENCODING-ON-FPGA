@@ -42,7 +42,9 @@ The goal is to develop a fully RISC-V-controlled system capable of real-time vid
 - `/image/`       – Images and diagrams for documentation  
 - `/docs/`        - Report files & reference papers
 ## Implement SoC on FPGA Virtex-7 (on-going)
-<img src="images/soc/soc_fpga_final.drawio.png" alt="description" width="600"/>
+<p align="center">
+  <img src="images/soc/soc_fpga_final.drawio.png" alt="description" width="600"/>
+</p>
 
 ## Authors & Supervisor
 - **Authors**: Dao Phuoc Tai, Nguyen Anh Khoi 
