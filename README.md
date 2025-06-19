@@ -29,10 +29,30 @@ The goal is to develop a fully RISC-V-controlled system capable of real-time vid
 - AXI-Full slave interface (based on Xilinx protocol template)
 - Loads raw `.yuv` video files for simulation
 - Receive bitstream data from H.264 Encoder IP via AXI DMA.
-  
+
 ### AXI DMA (Xilinx)
 - Configured in direct register mode
 - MM2S and S2MM control/status/length registers setup for data flow
+  
+## Test senarios
+### 1. RV32I CPU
+#### 1.1. 37 instruction test (implemented on Virtex-7 FPGA)
+The instruction testing process covers all 37 base instruction defined in the RV32I specification:
+o	R-type: add, sub, xor, or, and, sll, srl, sra, slt, sltu
+o	I-type (imm): addi, xori, ori, andi, slli, srli, srai, slti, sltiu
+o	I-type (load): lb, lh, lw, lbu, lhu
+o	S-type:  sb, sh, sw
+o	B-type: beq, bne, blt, bge, bltu, bgeu
+o	Các lệnh khác: jal, jalr, lui, auipc
+
+#### 1.2. Peripheral access via MMIO Interface (used AXI-Lite Protocol)
+
+### 2. H.264 Encoder IP
+<p align="center">
+  <img src="images/soc/SoC.drawio.png" alt="description" width="400"/>
+</p>
+
+### 3. Entire SoC
 
 ## Project Structure
 - `/rtl/`         – RISC-V CPU, H.264 encoder IP, and SoC modules
