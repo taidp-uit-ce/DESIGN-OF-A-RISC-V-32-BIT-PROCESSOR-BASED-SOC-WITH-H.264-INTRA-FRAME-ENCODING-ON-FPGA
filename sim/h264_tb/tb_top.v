@@ -23,23 +23,23 @@ parameter   S2MM_PATH   = "D:\\Workspaces\\RTL\\KLTN_sourcecode\\sw\\testcases\\
 //    IO DECLARATION
 //
 // ********************************************
-reg 		 					clk, rst_n;
+reg 		 		clk, rst_n;
 // CMD IN IF
-reg								sys_start;      
-wire							sys_done;		
-reg [ 5:0]						sys_qp;
+reg				sys_start;      
+wire				sys_done;		
+reg [ 5:0]			sys_qp;
 reg [10:0]                      sys_width;
 reg [10:0]                      sys_height;
 reg [ 8:0]                      sys_frame_total;
 // FIFO IN IF
-reg          					rvalid_i;
-wire         					rready_o;
-reg  [63:0]  					rdata_i;
+reg          			rvalid_i;
+wire         			rready_o;
+reg  [63:0]  			rdata_i;
 // FIFO OUT IF
-wire [7:0]   					wdata_o;
+wire [7:0]   			wdata_o;
 wire                            wvalid_o;
 
-reg  [7:0]   					frame_num;
+reg  [7:0]   			frame_num;
 //taidao
 wire [63:0] tdata_o         ;
 wire        tvalid_o        ;
@@ -52,36 +52,28 @@ reg         tready_i        ;
 // 				DUT                          
 //-------------------------------------------------------
 h264_core u_top     (
-				.clk      			( clk      			),
-				.rst_n    			( rst_n    			),
+				.clk      			( clk      	),
+				.rst_n    			( rst_n    	),
 				
-				.sys_start			( sys_start		    ),      
-				.sys_done			( sys_done		    ),		
-				.sys_qp				( sys_qp			),         
-                .sys_height         ( sys_height        ),
-                .sys_width          ( sys_width         ),
+				.sys_start			( sys_start	),      
+				.sys_done			( sys_done	),		
+				.sys_qp				( sys_qp	),         
+                		.sys_height         		( sys_height    ),
+                		.sys_width          		( sys_width     ),
 				
-				.rdata_i  			( rdata_i  			),
-				.rvalid_i 			( rvalid_i 			),
-				.rready_o   		( rready_o   		),
-				.wdata_o  			( wdata_o  			),
-				.wvalid_o	  		( wvalid_o	 		)
+				.rdata_i  			( rdata_i  	),
+				.rvalid_i 			( rvalid_i 	),
+				.rready_o   			( rready_o   	),
+				.wdata_o  			( wdata_o  	),
+				.wvalid_o	  		( wvalid_o	)
 			
-				//taidao
-//				.tdata_o            ( tdata_o           ),
-//				.tvalid_o           ( tvalid_o          ),
-//				.tlast_o            ( tlast_o           ),
-//				.tkeep_o            ( tkeep_o           ),
-//				.wready_o           ( wready_o          ),
-//				.tready_i           ( tready_i          )
-				//taidao
 );
 
 //-------------------------------------------------------
 // 				pixel ram input
 //-------------------------------------------------------
-reg [31:0]	 					addr_r, cnt;
-reg [31:0]   					pixel_ram[1<<30:0];
+reg [31:0]	addr_r, cnt;
+reg [31:0]   	pixel_ram[1<<30:0];
 
 always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
@@ -132,8 +124,8 @@ initial begin
     rvalid_i = 'b0;
 	rdata_i  = 'b0;
 	
-	sys_start		= 1'b0;     
-	sys_qp			= `INIT_QP;     
+	sys_start	= 1'b0;     
+	sys_qp		= `INIT_QP;     
 	sys_height      = `FRAMEHEIGHT;
 	sys_width       = `FRAMEWIDTH;
 	sys_frame_total = `FRAME_TOTAL;
@@ -172,39 +164,36 @@ initial begin
     end   
 	$readmemh(YUV_FILE, pixel_ram);
 	
-	// Mở file FPS_RESULT ở chế độ append để không ghi đè
     fps_file = $fopen(FPS_RESULT, "w"); 
     if (fps_file == 0) begin
         $display("Error: Could not open FPS result file: %s", FPS_RESULT);
         $finish;
     end
     
-	frame_num 		= 0;
+	frame_num 	= 0;
 	clk_total       = 0;
 	for (frame_num=0; frame_num<`FRAME_TOTAL; frame_num=frame_num+1'b1) begin
 		#(5*CLK_PERIOD); 
-        $display("%0d, Frame Number = %d :INTRA MODE \n",$time, frame_num);
-            sys_start = 1'b1;
-            clk_count_start = clk_count;     
+        	$display("%0d, Frame Number = %d :INTRA MODE \n",$time, frame_num);
+            	sys_start = 1'b1;
+            	clk_count_start = clk_count;     
 		#CLK_PERIOD sys_start = 1'b0;
 		
-	    #CLK_PERIOD wait(sys_done == 1'b1);
+	    	#CLK_PERIOD wait(sys_done == 1'b1);
 	        clk_count_end = clk_count;
 	        
-	    clk_per_frame = clk_count_end - clk_count_start;
-	    clk_total = clk_total + clk_per_frame; 
-	    fps = 1/((CLK_PERIOD / 1000000000.0) * clk_per_frame);
-	    $fwrite(fps_file, "Frame %d: %f FPS   -- Number of clk pulses: %d\n", frame_num, fps, clk_per_frame);
-        $display("Frame %d: %f FPS   -- Number of clk pulses: %d\n", frame_num, fps, clk_per_frame);
+	    	clk_per_frame = clk_count_end - clk_count_start;
+	    	clk_total = clk_total + clk_per_frame; 
+	    	fps = 1/((CLK_PERIOD / 1000000000.0) * clk_per_frame);
+	    	$fwrite(fps_file, "Frame %d: %f FPS   -- Number of clk pulses: %d\n", frame_num, fps, clk_per_frame);
+        	$display("Frame %d: %f FPS   -- Number of clk pulses: %d\n", frame_num, fps, clk_per_frame);
 	end	
-	// Ghi FPS trung bình vào cuối file	
 
     fps         = 1000000000.0 / ((clk_total * CLK_PERIOD) / `FRAME_TOTAL);
     time_total  = (clk_total * CLK_PERIOD) / 1000000000.0;
     $fwrite(fps_file, "AVERAGE FPS: %f\n", fps);
     $fwrite(fps_file, "ENCODING TIME: %f\n", time_total);
     
-    // �?óng file sau khi hoàn tất ghi dữ liệu
     $fclose(fps_file);
     
 	if(all_passed) begin
@@ -218,7 +207,7 @@ initial begin
 	   $display("AVARAGE FPS           : %0f", fps);
 	end
 	#5000;
-    	$finish;
+	$finish;
 end
 // -------------------------------------------------------
 //                  DUMP bit stream
@@ -294,81 +283,17 @@ always @(posedge clk) begin
 	else if (u_top.wvalid_o) begin
 		$fscanf(fp_check, "%h", check_data);
 		if (check_data !== u_top.wdata_o) begin
-		    all_passed = 1'b0;
+		    	all_passed = 1'b0;
 			$display("ERROR(MB x:%3d y:%3d): check_data(%h) != bs_data(%h)", u_top.mb_x_ec, u_top.mb_y_ec, check_data, u_top.wdata_o);
-//			#5000 $finish;
+			#5000 $finish;
 		end
 		else begin
-              $display("MATCHED(MB x:%3d y:%3d): check_data(%h) == bs_data(%h)", u_top.mb_x_ec, u_top.mb_y_ec, check_data, u_top.wdata_o);
+              		$display("MATCHED(MB x:%3d y:%3d): check_data(%h) == bs_data(%h)", u_top.mb_x_ec, u_top.mb_y_ec, check_data, u_top.wdata_o);
 		end
 	end	
 end
 
 `endif
 
-// -------------------------------------------------------
-//                     DUMP FSDB
-// -------------------------------------------------------
-`ifdef DUMP_FSDB
-initial begin 
-	$fsdbDumpfile(DUMP_FILE);
-	$fsdbDumpvars;
-	$fsdbDumpoff;
-	wait(frame_num==0);
-	$fsdbDumpon;
-end
-`endif
-
-// -------------------------------------------------------
-//                  DUMP current MB
-// -------------------------------------------------------
-`ifdef DUMP_CUR_MB
-integer f_cmb;
-integer cmb_i, cmb_j;
-initial begin
-	f_cmb = $fopen("./dump/cur_mb.dat ","wb");
-end
-
-always @(frame_num)
-	$fdisplay(f_cmb, "Frame Number =%3d", frame_num);
-
-always @(posedge clk) begin	
-	if (u_top.load_done) begin
-		$fwrite(f_cmb, "\nMB_X =%d, MB_Y =%d\n", u_top.mb_x_load, u_top.mb_y_load);
-		$fwrite(f_cmb, "==Y==\n");
-		for (cmb_i=0; cmb_i<16; cmb_i=cmb_i+1) begin
-			for (cmb_j=0; cmb_j<16; cmb_j=cmb_j+1) begin
-				$fwrite(f_cmb, "%h ", u_top.u_cur_mb.cur_y[16*cmb_i+cmb_j]);
-			end
-			$fwrite(f_cmb, "\n");
-		end
-		$fwrite(f_cmb, "==U==\n");
-		for (cmb_i=0; cmb_i<8; cmb_i=cmb_i+1) begin
-			for (cmb_j=0; cmb_j<8; cmb_j=cmb_j+1) begin
-				$fwrite(f_cmb, "%h ", u_top.u_cur_mb.cur_u[8*cmb_i+cmb_j]);
-			end
-			$fwrite(f_cmb, "\n");
-		end		
-		$fwrite(f_cmb, "==V==\n");
-		for (cmb_i=0; cmb_i<8; cmb_i=cmb_i+1) begin
-			for (cmb_j=0; cmb_j<8; cmb_j=cmb_j+1) begin
-				$fwrite(f_cmb, "%h ", u_top.u_cur_mb.cur_v[8*cmb_i+cmb_j]);
-			end
-			$fwrite(f_cmb, "\n");
-		end		
-	end
-end
-`endif
-
-// -------------------------------------------------------
-//                 Include Dump Bench
-// -------------------------------------------------------
-//`include "./bench/ime_dump.v"
-//`include "./bench/fme_dump.v"
-//`include "./bench/mc_dump.v"
-//`include "./bench/intra_dump.v"
-//`include "./bench/tq_dump.v"
-//`include "./bench/db_dump.v"
-//`include "./bench/cavlc_dump.v"
 
 endmodule
