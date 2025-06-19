@@ -7,6 +7,7 @@ The goal is to develop a fully RISC-V-controlled system capable of real-time vid
 
 ## System Overview
 ![SoC Overview ](images/soc/SoC.drawio.png)
+<img src="images/soc/SoC.drawio.png" alt="description" width="400"/>
 ### RISC-V RV32I CPU (5-stage pipeline)
 - Supports all 37 base instructions
 - AXI-Lite interface for memory-mapped peripheral access (verified AXI-Lite protocol using AXI VIP)
