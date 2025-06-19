@@ -7,7 +7,7 @@ The goal is to develop a fully RISC-V-controlled system capable of real-time vid
 
 ## System Overview
 <p align="center">
-  <img src="images/soc/SoC.drawio.png" alt="description" width="400"/>
+  <img src="images/soc/SoC.drawio.png" alt="description" width="250"/>
 </p>
 
 ### RISC-V RV32I CPU (5-stage pipeline)
