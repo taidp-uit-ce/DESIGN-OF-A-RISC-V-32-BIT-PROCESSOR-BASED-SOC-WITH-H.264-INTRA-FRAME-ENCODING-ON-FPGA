@@ -43,13 +43,15 @@ The instruction testing process covers all 37 base instruction defined in the RV
 - I-type (load): lb, lh, lw, lbu, lhu
 - S-type:  sb, sh, sw
 - B-type: beq, bne, blt, bge, bltu, bgeu
-- Các lệnh khác: jal, jalr, lui, auipc
+- Jump and Upper Immediate Instructions: jal, jalr, lui, auipc
 
 #### 1.2. Peripheral access via MMIO Interface (used AXI-Lite Protocol)
+This test verifies the CPU's ability to access peripheral registers mapped outside the internal DMEM address space. It validates the generation of correct AXI-Lite transactions triggered by load (lw, lh, lb) and store (sw, sh, sb) instructions.
 
 ### 2. H.264 Encoder IP
+
 <p align="center">
-  <img src="images/soc/SoC.drawio.png" alt="description" width="400"/>
+  <img src="images/h264/H264_KichBanTest.drawio.png" alt="description" width="600"/>
 </p>
 
 ### 3. Entire SoC
