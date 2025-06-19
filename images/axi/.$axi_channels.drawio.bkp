@@ -1,0 +1,31 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.5 Chrome/126.0.6478.183 Electron/31.3.0 Safari/537.36" version="24.7.5">
+  <diagram name="Page-1" id="dnJJrgQoOY2eEGvPRg3B">
+    <mxGraphModel dx="1050" dy="621" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="wPr7WR3aQmmcEiyM0wM7-1" value="Master side" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="220" y="120" width="100" height="460" as="geometry" />
+        </mxCell>
+        <mxCell id="wPr7WR3aQmmcEiyM0wM7-2" value="Read address channel" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="320" y="160" width="360" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wPr7WR3aQmmcEiyM0wM7-3" value="Slave&lt;div&gt;slide&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="680" y="120" width="100" height="460" as="geometry" />
+        </mxCell>
+        <mxCell id="wPr7WR3aQmmcEiyM0wM7-4" value="Read data channel with read response" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="320" y="240" width="360" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wPr7WR3aQmmcEiyM0wM7-5" value="Write address channel" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="320" y="320" width="360" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wPr7WR3aQmmcEiyM0wM7-6" value="Write data channel" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="320" y="400" width="360" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wPr7WR3aQmmcEiyM0wM7-7" value="Write response channel" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="320" y="480" width="360" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
