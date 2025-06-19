@@ -1,0 +1,1 @@
+create_clock -period 6.670 -name rv32i_clk -waveform {0.000 3.335} -add [get_ports m_axi_lite_aclk]
