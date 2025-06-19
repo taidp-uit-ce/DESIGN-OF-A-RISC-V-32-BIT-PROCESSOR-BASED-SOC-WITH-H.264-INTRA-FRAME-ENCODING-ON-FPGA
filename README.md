@@ -6,8 +6,7 @@ This thesis presents the design and implementation of a System-on-Chip (SoC) tha
 The goal is to develop a fully RISC-V-controlled system capable of real-time video compression, demonstrating the feasibility of applying open-source RISC-V architecture in embedded applications with high data processing demands.
 
 ## System Overview
-![SoC Overview ](images/soc/SoC.drawio.png)
-<img src="images/soc/SoC.drawio.png" alt="description" width="400"/>
+<img src="images/soc/SoC.drawio.png" alt="description" width="600"/>
 ### RISC-V RV32I CPU (5-stage pipeline)
 - Supports all 37 base instructions
 - AXI-Lite interface for memory-mapped peripheral access (verified AXI-Lite protocol using AXI VIP)
