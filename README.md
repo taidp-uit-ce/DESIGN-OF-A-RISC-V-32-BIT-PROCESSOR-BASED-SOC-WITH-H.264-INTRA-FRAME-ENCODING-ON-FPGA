@@ -6,7 +6,7 @@ This thesis presents the design and implementation of a System-on-Chip (SoC) tha
 The goal is to develop a fully RISC-V-controlled system capable of real-time video compression, demonstrating the feasibility of applying open-source RISC-V architecture in embedded applications with high data processing demands.
 
 ## System Overview
-![SoC Overview ](images/system_arch.png)
+![SoC Overview ](images/soc/SoC.drawio.png)
 ### RISC-V RV32I CPU (5-stage pipeline)
 - Supports all 37 base instructions
 - AXI-Lite interface for memory-mapped peripheral access (verified AXI-Lite protocol using AXI VIP)
@@ -31,11 +31,11 @@ The goal is to develop a fully RISC-V-controlled system capable of real-time vid
 - MM2S and S2MM control/status/length registers setup for data flow
 
 ## Project Structure
-- `/rtl/`     – RISC-V CPU, H.264 encoder IP, and SoC modules
-- `/matlab/`  - description of the operating pricible of H.264 video codec (encode + decode)
-- `/sim/`     – Testbenches and simulation files  
-- `/scripts/` – Python scripts for `.yuv` extraction and Ethernet data transfer  
-- `/media/`   – Images and diagrams for documentation  
+- `/rtl/`         – RISC-V CPU, H.264 encoder IP, and SoC modules
+- `/matlab/`      - description of the operating pricible of H.264 video codec (encode + decode)
+- `/sim/`         – Testbenches and simulation files  
+- `/sw_scripts/`  – Python scripts for `.yuv` extraction and Ethernet data transfer  
+- `/image/`       – Images and diagrams for documentation  
 
 ## Implement SoC on FPGA Virtex-7 (on-going)
 ![SoC implement on Virtex7 FPGA Block Diagram](images/system_arch.png)
