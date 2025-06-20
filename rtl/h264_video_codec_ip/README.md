@@ -6,13 +6,15 @@
 # Function Description
 
 ## AXI-Lite (slave):
-Memory-mapped control registers used by the CPU to configure and trigger the encoder:
-- `start`: Start signal for H.264 encoding
-- `done`: Asserted when one frame has been encoded
-- `qp`: Quantization parameter
-- `width`: Frame width (in pixels)
-- `height`: Frame height (in pixels)
-- 
+- Provides a memory-mapped control/status interface accessible by the RV32I CPU
+- Used to configure encoder parameters and monitor encoding status
+- Accessible registers include:
+  - `start`: Start signal for H.264 encoding
+  - `done`: Asserted when one frame has been encoded
+  - `qp`: Quantization parameter
+  - `width`: Frame width (in pixels)
+  - `height`: Frame height (in pixels)
+  
 ## AXI-Stream (slave):
 - Receives raw video input from AXI DMA (MM2S) via a slave-stream port
 - Data is buffered into an asynchronous FIFO
