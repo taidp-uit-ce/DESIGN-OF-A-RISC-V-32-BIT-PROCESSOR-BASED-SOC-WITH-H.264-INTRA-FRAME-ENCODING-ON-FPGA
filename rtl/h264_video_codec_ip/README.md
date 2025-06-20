@@ -1,6 +1,6 @@
 # H.264 Video Encoder IP Overview
 <p align="center">
-  <img src="images/h264/H264_IP.drawio.png" alt="description" width="600"/>
+  <img src="../../../images/h264/H264_IP.drawio.png" alt="description" width="600"/>
 </p>
 
 # Function Description
