@@ -7,7 +7,7 @@ The goal is to develop a fully RISC-V-controlled system capable of real-time vid
 
 ## Project Structure
 - `/rtl/`         – RISC-V CPU, H.264 encoder IP, and SoC modules
-- `/matlab/`      - description of the operating pricible of H.264 video codec (encode + decode)
+- `/matlab/`      - description of the operating pricible of H.264 video codec
 - `/sim/`         – Testbenches and simulation files  
 - `/sw_scripts/`  – Python scripts for `.yuv` extraction and Ethernet data transfer  
 - `/image/`       – Images and diagrams for documentation  
