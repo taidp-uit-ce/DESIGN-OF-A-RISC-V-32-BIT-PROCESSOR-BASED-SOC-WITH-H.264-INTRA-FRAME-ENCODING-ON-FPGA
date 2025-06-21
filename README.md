@@ -5,6 +5,14 @@ This thesis presents the design and implementation of a System-on-Chip (SoC) tha
 
 The goal is to develop a fully RISC-V-controlled system capable of real-time video compression, demonstrating the feasibility of applying open-source RISC-V architecture in embedded applications with high data processing demands.
 
+## Project Structure
+- `/rtl/`         – RISC-V CPU, H.264 encoder IP, and SoC modules
+- `/matlab/`      - description of the operating pricible of H.264 video codec (encode + decode)
+- `/sim/`         – Testbenches and simulation files  
+- `/sw_scripts/`  – Python scripts for `.yuv` extraction and Ethernet data transfer  
+- `/image/`       – Images and diagrams for documentation  
+- `/docs/`        - Report files & reference papers
+  
 ## System Overview
 <p align="center">
   <img src="images/soc/SoC.drawio.png" alt="description" width="400"/>
@@ -54,16 +62,19 @@ This test verifies the CPU's ability to access peripheral registers mapped outsi
   <img src="images/h264/H264_KichBanTest.drawio.png" alt="description" width="600"/>
 </p>
 
-### 3. Entire SoC
+### 3. SoC: Encoder Flow Control
+The overall control sequence is as follow:
+1. Initialize and configure the system
+2. Set up the AXI DMA (source/destination addresses & transfer size)
+3. Configure and start the H.264 encoder
+4. Run the main program according to the given settings
+5. Exit the program
+<p align="center">
+  <img src="/images/soc/soc_algorithm.drawio.png" alt="description" width="600"/>
+</p>
 
-## Project Structure
-- `/rtl/`         – RISC-V CPU, H.264 encoder IP, and SoC modules
-- `/matlab/`      - description of the operating pricible of H.264 video codec (encode + decode)
-- `/sim/`         – Testbenches and simulation files  
-- `/sw_scripts/`  – Python scripts for `.yuv` extraction and Ethernet data transfer  
-- `/image/`       – Images and diagrams for documentation  
-- `/docs/`        - Report files & reference papers
 ## Implement SoC on FPGA Virtex-7 (on-going)
+On the physical FPGA, input video must reside in the on‑board 1 GB DDR SDRAM (the on‑chip BRAM is too small).To stream the data from the host PC to DDR, the design adds a Xilinx **AXI 1G/2.5G Ethernet Subsystem**. Configuration is handled by a **MicroBlaze** soft‑core running in Vitis, using **lwIP** and helper libraries to receive Ethernet frames. A small Python script on the PC builds and sends RAW Ethernet packets (via `socket`) to feed the FPGA.
 <p align="center">
   <img src="images/soc/soc_fpga_final.drawio.png" alt="description" width="600"/>
 </p>
