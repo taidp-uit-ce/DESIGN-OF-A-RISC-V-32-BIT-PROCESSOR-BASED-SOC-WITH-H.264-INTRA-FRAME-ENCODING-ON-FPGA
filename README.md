@@ -57,7 +57,13 @@ The instruction testing process covers all 37 base instruction defined in the RV
 This test verifies the CPU's ability to access peripheral registers mapped outside the internal DMEM address space. It validates the generation of correct AXI-Lite transactions triggered by load (lw, lh, lb) and store (sw, sh, sb) instructions.
 
 ### 2. H.264 Encoder IP
-
+For YUV 4:2:0 input, a custom Python tool is used to parse frames into 16×16 macroblocks compatible with the encoder input format.  
+The processed raw data is then loaded into either:
+- A simulated 1 GB DDR RAM block (for simulation), or  
+- The physical 1 GB DDR SDRAM via Ethernet (on FPGA)
+After loading, the encoder is triggered to start compression.  
+Encoded output is verified against a reference software encoder and converted to `.264` format.  
+Finally, the decoded video is compared to the original raw input using **PSNR**, measured via `ffmpeg`.
 <p align="center">
   <img src="images/h264/H264_KichBanTest.drawio.png" alt="description" width="600"/>
 </p>
@@ -74,7 +80,7 @@ The overall control sequence is as follow:
 </p>
 
 ## Implement SoC on FPGA Virtex-7 (on-going)
-On the physical FPGA, input video must reside in the on‑board 1 GB DDR SDRAM (the on‑chip BRAM is too small).To stream the data from the host PC to DDR, the design adds a Xilinx **AXI 1G/2.5G Ethernet Subsystem**. Configuration is handled by a **MicroBlaze** soft‑core running in Vitis, using **lwIP** and helper libraries to receive Ethernet frames. A small Python script on the PC builds and sends RAW Ethernet packets (via `socket`) to feed the FPGA.
+On the physical FPGA, input video must reside in the on‑board 1 GB DDR SDRAM (the on‑chip BRAM is too small). To stream the data from the host PC to DDR, the design adds a Xilinx **AXI 1G/2.5G Ethernet Subsystem**. Configuration is handled by a **MicroBlaze** soft‑core running in Vitis, using **lwIP** and helper libraries to receive Ethernet frames. A small Python script on the PC builds and sends RAW Ethernet packets (via `socket`) to feed the FPGA.
 <p align="center">
   <img src="images/soc/soc_fpga_final.drawio.png" alt="description" width="600"/>
 </p>
