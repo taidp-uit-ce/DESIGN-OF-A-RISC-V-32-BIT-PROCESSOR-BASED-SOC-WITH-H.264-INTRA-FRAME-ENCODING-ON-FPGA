@@ -62,9 +62,7 @@ The processed raw data is then loaded into either:
 - A simulated 1 GB DDR RAM block (for simulation), or  
 - The physical 1 GB DDR SDRAM via Ethernet (on FPGA)
 
-After loading, the encoder is triggered to start compression.  
-Encoded output is verified against a reference software encoder and converted to `.264` format.  
-Finally, the decoded video is compared to the original raw input using **PSNR**, measured via `ffmpeg`.
+After loading, the encoder is triggered to start compression. Encoded output is verified against a reference software encoder and converted to `.264` format. Finally, the decoded video is compared to the original raw input using **PSNR**, measured via `ffmpeg`.
 <p align="center">
   <img src="images/h264/H264_KichBanTest.drawio.png" alt="description" width="600"/>
 </p>
